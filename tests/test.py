@@ -1,14 +1,13 @@
 import unittest
 
-
 import sys
 sys.path.insert(0,'..')
-from hermes.convert import atoms_to_dict, dict_to_atoms, data_to_dict, dict_to_data
+from hermes.convert import atoms_to_dict, dict_to_atoms, calc_to_dict, dict_to_calc, data_to_dict, dict_to_data
 
 from ase import Atoms
 from ase.build import surface
 from ase.constraints import Hookean, FixAtoms, FixBondLength
-import espresso
+from espresso import espresso
 
 class ConversionConsistency(unittest.TestCase):
     """Tests for consistency between data conversions"""
