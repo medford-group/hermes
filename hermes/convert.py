@@ -7,6 +7,9 @@ import json
 def atoms_to_dict(atoms):
     return {}
 
+def dict_to_atoms(d):
+    return {}
+
 ## Functions for creating data objects from calculator objects
 
 def calc_to_dict(calc):
@@ -26,7 +29,7 @@ def data_to_dict(atoms, calc, metadata):
     d = {}
     return d
 
-def data_from_dict(d):
+def dict_to_data(d):
     atoms = {}
     calc = {}
     metadata = {}
