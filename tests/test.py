@@ -7,7 +7,11 @@ from hermes.convert import atoms_to_dict, dict_to_atoms, calc_to_dict, dict_to_c
 from ase import Atoms
 from ase.build import surface
 from ase.constraints import Hookean, FixAtoms, FixBondLength
-from espresso import espresso
+
+try:
+    from espresso import espresso
+except ImportError:
+    print('No ESPRESSO found. The calculator tests will fail.')
 
 class ConversionConsistency(unittest.TestCase):
     """Tests for consistency between data conversions"""
