@@ -2,6 +2,7 @@ import json
 from collections import OrderedDict
 import os
 import datetime
+from espresso import espresso
 
 # Functions for data transformations not involving database
 
@@ -27,7 +28,8 @@ def calc_to_dict(calc):
        raise IOError('calculator does not have todict imprementation')
     return d
 def dict_to_calc(calc_dict):
-    pass
+    d = espresso(**calc_dict)
+    return d
 
 ## Functions for transforming data between dictionary, json, etc.
 
