@@ -58,8 +58,8 @@ class ConversionConsistency(unittest.TestCase):
         return [esp] #return list in case we add more calcs in the future
 
     def test_atoms_dict(self):
-	atoms = self.get_test_atoms()
-	d = atoms_to_dict(atoms)
+        atoms = self.get_test_atoms()
+        d = atoms_to_dict(atoms)
         a = dict_to_atoms(d)
 
         self.assertEqual(atoms, a)
