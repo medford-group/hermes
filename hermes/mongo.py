@@ -53,7 +53,7 @@ import json
 #    
 #    return
 
-def DFT_query(database = 'medford-data', collection = 'DFT', query = {}, username = None, password = None,printout = False):
+def Mongo_query(database = 'medford-data', collection = 'DFT', query = {}, username = None, password = None,printout = False):
     result = []
     if username == None or password == None:
         username, password = user_authentication()
@@ -69,7 +69,7 @@ def DFT_query(database = 'medford-data', collection = 'DFT', query = {}, usernam
     pp.pprint('total documents found: ' + str(len(result)))
     return result
     
-def DFT_delete(query,database = 'medford-data', collection = 'DFT', username = None, password = None):
+def Mongo_delete(query,database = 'medford-data', collection = 'DFT', username = None, password = None):
     if username == None or password == None:
         username, password = user_authentication()
     user_uri  = get_Client_uri(username, password)
@@ -117,7 +117,7 @@ def DFT_delete(query,database = 'medford-data', collection = 'DFT', username = N
                 pp.pprint('Documents Not deleted')         
     return
 
-def DFT_insert_one(post,database = 'medford-data', collection = 'DFT', username = None, password = None):
+def Mongo_insert_one(post,database = 'medford-data', collection = 'DFT', username = None, password = None):
     if username == None or password == None:
         username, password = user_authentication()
     user_uri  = get_Client_uri(username, password)
@@ -135,7 +135,7 @@ def DFT_insert_one(post,database = 'medford-data', collection = 'DFT', username 
     
     return
 
-def insert_json_file(filename,database = 'medford-data', collection = 'DFT', username = None, password = None):
+def Mongo_insert_json_file(filename,database = 'medford-data', collection = 'DFT', username = None, password = None):
     if username == None or password == None:
         username, password = user_authentication()
     user_uri  = get_Client_uri(username, password)

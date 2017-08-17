@@ -3,6 +3,7 @@ import unittest
 import sys
 sys.path.insert(0,'..')
 from hermes.convert import atoms_to_dict, dict_to_atoms, calc_to_dict, dict_to_calc, data_to_dict, dict_to_data
+from hermes.mongo import Mongo_query, Mongo_insert_one,Mongo_delete
 
 from ase import Atoms
 from ase.build import surface
@@ -73,6 +74,17 @@ class ConversionConsistency(unittest.TestCase):
             self.assertEqual(ci.todict(), c.todict())
             self.assertNotEqual(ci.todict(),{})
             
+            
+            
+class MongoConnectivity(unittest.TestCase):
+    def get_test_case(self):
+        return {'test':'test'}
+    def test_mongo_connection(self):
+        test_dict = self.get_test_case()
+        Mongo_insert_one(test_dict,database = 'medford-data', collection = 'test', username = None, password = None)
+        Mongo_query(database = 'medford-data', collection = 'test', query = {}, username = None, password = None,printout = False)
+        Mongo_delete({'test':'test'},database = 'medford-data', collection = 'test', username = None, password = None)
+        
 
 
 if __name__ == '__main__':

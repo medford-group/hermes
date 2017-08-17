@@ -6,7 +6,7 @@ Created on Thu Aug 17 15:00:56 2017
 """
 
 import sys
-from mongo import DFT_query
+from mongo import Mongo_query
 import pprint
 
 argsdict = {}
@@ -31,7 +31,7 @@ query = argsdict
 print query
 
 
-result = DFT_query(query = query)
+result = Mongo_query(query = query)
 pp = pprint.PrettyPrinter()
 
 if len(result) <= 1:

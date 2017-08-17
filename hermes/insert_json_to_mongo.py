@@ -6,7 +6,7 @@ Created on Thu Aug 17 14:36:05 2017
 """
 
 import sys
-from mongo import insert_json_file
+from mongo import Mongo_insert_json_file
 import pprint
 
 filename = sys.argv[1]
@@ -28,4 +28,4 @@ try:
 except:
     collection = "DFT"
 
-insert_json_file(filename,database = 'medford-data', collection = collection, username = None, password = None)
+Mongo_insert_json_file(filename,database = 'medford-data', collection = collection, username = None, password = None)
