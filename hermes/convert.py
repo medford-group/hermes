@@ -26,7 +26,8 @@ def calc_to_dict(calc):
     except:
        raise IOError('calculator does not have todict imprementation')
     return d
-
+def dict_to_calc(calc_dict):
+    pass
 
 ## Functions for transforming data between dictionary, json, etc.
 
