@@ -70,7 +70,9 @@ class ConversionConsistency(unittest.TestCase):
             print('Testing: {}'.format(ci))
             d = calc_to_dict(ci)
             c = dict_to_calc(d)
-            self.assertEqual(ci, c)
+            self.assertEqual(ci.todict(), c.todict())
+            self.assertNotEqual(ci.todict(),{})
+            
 
 
 if __name__ == '__main__':
