@@ -11,12 +11,12 @@ def atoms_to_dict(atoms):
 
 def calc_to_dict(calc):
     # check to see if calc is espresso
-    d = espresso_to_dict()
-    #else raise error
-    return d
-
-def espresso_to_dict(esp_calc):
-    d = {}
+    try:
+       calc = calc.get_calculator()
+    try:
+       d = calc.todict()
+    except:
+       raise IOError('calculator does not have todict imprementation')
     return d
 
 
