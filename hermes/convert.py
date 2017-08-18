@@ -20,7 +20,7 @@ def atoms_to_dict(atoms):
                           'magmom':atom.magmom}
                             for atom in atoms],
                             cell=atoms.cell.tolist(),
-                            pbc=atoms.pbc,
+                            pbc=atoms.pbc.tolist(),
                             info=atoms.info,
                             constraints=[c.todict() for c in atoms.constraints])
     d['natoms']=len(atoms)
