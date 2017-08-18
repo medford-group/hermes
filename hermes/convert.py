@@ -69,6 +69,17 @@ def dict_to_calc(calc_dict):
 
 ## Functions for transforming data between dictionary, json, etc.
 
+def make_serializable(node):
+    for key, item in node.items():
+        if hasattr(item,'items'):
+            make_serializable(item)
+        else:
+            if hasattr(item, 'tolist'):
+                item = item.tolist()
+                node[key] = item
+            else:
+                pass
+
 def data_to_dict(atoms, calc, metadata):
     
     atom_dict = atoms_to_dict(atoms)
@@ -78,7 +89,9 @@ def data_to_dict(atoms, calc, metadata):
     metadata_dict = OrderedDict(metadata)
     metadata_dict = ID_stamper(metadata_dict)
     metadata_dict['mtime']=str(datetime.datetime.utcnow())
+
     d = OrderedDict(atoms=atom_dict,calculator=calc_dict,metadata=metadata_dict)
+    make_serializable(d)
     
     return d
 
