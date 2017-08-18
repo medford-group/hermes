@@ -62,8 +62,13 @@ def calc_to_dict(calc):
     try:
        d = calc.todict()
     except:
-       raise IOError('calculator does not have todict imprementation')
+        try:
+            d = calc.todict_()
+        except:
+            raise IOError('calculator does not have todict imprementation')
     return d
+    
+    
 def dict_to_calc(calc_dict):
     pass
 
