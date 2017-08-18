@@ -14,10 +14,10 @@ def atoms_to_dict(atoms):
     d=OrderedDict(atoms=[{'symbol':atom.symbol,
                           'position':atom.position.tolist(),
                           'tag':atom.tag,
-                          'index':atom.index,
-                          'charge':atom.charge,
-                          'momentum':atom.momentum,
-                          'magmom':atom.magmom}
+                          'index':atom.index.tolist(),
+                          'charge':atom.charge.tolist(),
+                          'momentum':atom.momentum.tolist(),
+                          'magmom':atom.magmom.tolist()}
                             for atom in atoms],
                             cell=atoms.cell.tolist(),
                             pbc=atoms.pbc,
