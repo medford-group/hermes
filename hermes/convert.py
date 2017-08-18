@@ -36,6 +36,7 @@ def atoms_to_dict(atoms):
     
     return d
 
+
 def dict_to_atoms(d):
     atoms=Atoms([Atom(symbol=atom['symbol'],
                       position=atom['position'],
@@ -44,12 +45,11 @@ def dict_to_atoms(d):
                       charge=atom['charge'],
                       momentum=atom['momentum'],
                       magmom=atom['magmom'])
-                      for atom in d['atoms']['atoms']],
-                          cell=d['atoms']['cell'],
-                          pbc=d['atoms']['pbc'],
-                          info=d['atoms']['info'],
-                          mass=d['atoms']['mass'],
-                          constraint=[dict2constraint(c) for c in d['atoms']['constraints']])
+                      for atom in d['atoms']],
+                          cell=d['cell'],
+                          pbc=d['pbc'],
+                          info=d['info'],
+                          constraint=[dict2constraint(c) for c in d['constraints']])
     return atoms
 
 ## Functions for creating data objects from calculator objects

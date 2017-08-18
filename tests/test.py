@@ -8,7 +8,11 @@ from hermes.mongo import Mongo_query, Mongo_insert_one,Mongo_delete
 from ase import Atoms
 from ase.build import surface
 from ase.constraints import Hookean, FixAtoms, FixBondLength
-from espresso import espresso
+
+try:
+    from espresso import espresso
+except ImportError:
+    print('No ESPRESSO found. The calculator tests will fail.')
 
 class ConversionConsistency(unittest.TestCase):
     """Tests for consistency between data conversions"""
