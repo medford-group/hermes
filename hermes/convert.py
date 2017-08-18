@@ -11,19 +11,18 @@ from ase.constraints import dict2constraint
 
 ## Functions for creating data objects from ASE atoms objects
 def atoms_to_dict(atoms):
-     d=OrderedDict(atoms=[{'symbol':atom.symbol,
+    d=OrderedDict(atoms=[{'symbol':atom.symbol,
                           'position':atom.position,
                           'tag':atom.tag,
                           'index':atom.index,
                           'charge':atom.charge,
                           'momentum':atom.momentum,
                           'magmom':atom.magmom}
-    for atom in atoms],
-    cell=atoms.cell.tolist(),
-    pbc=atoms.pbc,
-    info=atoms.info,
-    constraints=[c.todict() for c in atoms.constraints])
-    
+                            for atom in atoms],
+                            cell=atoms.cell.tolist(),
+                            pbc=atoms.pbc,
+                            info=atoms.info,
+                            constraints=[c.todict() for c in atoms.constraints])
     d['natoms']=len(atoms)
     cell=atoms.get_cell()
     if cell is not None and np.linalg.det(cell) > 0:
