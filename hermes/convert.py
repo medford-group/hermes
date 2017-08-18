@@ -88,7 +88,7 @@ def data_to_dict(atoms, calc, metadata):
         calc_dict['name']= calc.__class__.__name__
     metadata_dict = OrderedDict(metadata)
     metadata_dict = ID_stamper(metadata_dict)
-    metadata_dict['mtime']=datetime.datetime.utcnow()
+    metadata_dict['mtime']=str(datetime.datetime.utcnow())
 
     d = OrderedDict(atoms=atom_dict,calculator=calc_dict,metadata=metadata_dict)
     make_serializable(d)
@@ -114,5 +114,5 @@ def ID_stamper(metadata_dict):
     if 'USER' not in metadata_dict:
         metadata_dict['USER']=os.getenv('USER')
     if 'ctime' not in metadata_dict:
-        metadata_dict['ctime']=datetime.datetime.utcnow()
+        metadata_dict['ctime']=str(datetime.datetime.utcnow())
     return metadata_dict
