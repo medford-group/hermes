@@ -74,10 +74,9 @@ def make_serializable(node):
         if hasattr(item,'items'):
             make_serializable(item)
         else:
-            key, val = item
-            if hasattr(val, 'tolist'):
-                val = val.tolist()
-                node[key] = val
+            if hasattr(item, 'tolist'):
+                item = item.tolist()
+                node[key] = item
             else:
                 pass
 
