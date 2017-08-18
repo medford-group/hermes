@@ -19,7 +19,7 @@ def atoms_to_dict(atoms):
                           'momentum':atom.momentum,
                           'magmom':atom.magmom}
     for atom in atoms],
-    cell=atoms.cell,
+    cell=atoms.cell.tolist(),
     pbc=atoms.pbc,
     info=atoms.info,
     constraints=[c.todict() for c in atoms.constraints])
@@ -79,7 +79,7 @@ def data_to_dict(atoms, calc, metadata):
     metadata_dict = OrderedDict(metadata)
     metadata_dict = ID_stamper(metadata_dict)
     metadata_dict['mtime']=datetime.datetime.utcnow()
-    d = OrderedDict(atom_dict,calc_dict,metadata_dict)
+    d = OrderedDict(atoms=atom_dict,calculator=calc_dict,metadata=metadata_dict)
     
     return d
 
