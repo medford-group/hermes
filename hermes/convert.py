@@ -11,28 +11,30 @@ from ase.constraints import dict2constraint
 
 ## Functions for creating data objects from ASE atoms objects
 def atoms_to_dict(atoms):
-     d=OrderedDict(atoms=[{'symbol':atom.symbol,
-                          'position':atom.position,
+    d=OrderedDict(atoms=[{'symbol':atom.symbol,
+                          'position':atom.position.tolist(),
                           'tag':atom.tag,
                           'index':atom.index,
                           'charge':atom.charge,
-                          'momentum':atom.momentum,
-                          'magmom':atom.magmom} for atom in atoms],
-                           cell=atoms.cell,
-                           pbc=atoms.pbc,
-                           info=atoms.info,
-                           constraints=[c.todict() for c in atoms.constraints])
-     d['natoms']=len(atoms)
-     cell=atoms.get_cell()
-     if cell is not None and np.linalg.det(cell) > 0:
-         d['volume']=atoms.get_volume()
-         
-     d['mass']=sum(atoms.get_masses())
-     syms=atoms.get_chemical_symbols()
-     d['chemical_symbols']=list(set(syms))
-     d['spacegroup']=spglib.get_spacegroup(atoms)
-     
-     return d
+                          'momentum':atom.momentum.tolist(),
+                          'magmom':atom.magmom}
+                            for atom in atoms],
+                            cell=atoms.cell.tolist(),
+                            pbc=atoms.pbc.tolist(),
+                            info=atoms.info,
+                            constraints=[c.todict() for c in atoms.constraints])
+    d['natoms']=len(atoms)
+    cell=atoms.get_cell()
+    if cell is not None and np.linalg.det(cell) > 0:
+        d['volume']=atoms.get_volume()
+        
+    d['mass']=sum(atoms.get_masses())
+    syms=atoms.get_chemical_symbols()
+    d['chemical_symbols']=list(set(syms))
+    d['spacegroup']=spglib.get_spacegroup(atoms)
+    
+    return d
+
 
 def dict_to_atoms(d):
     atoms=Atoms([Atom(symbol=atom['symbol'],
@@ -88,8 +90,8 @@ def data_to_dict(atoms, calc, metadata):
     metadata_dict = OrderedDict(metadata)
     metadata_dict = ID_stamper(metadata_dict)
     metadata_dict['mtime']=datetime.datetime.utcnow()
-    d = OrderedDict(atom_dict,calc_dict,metadata_dict)
 
+    d = OrderedDict(atoms=atom_dict,calculator=calc_dict,metadata=metadata_dict)
     make_serializable(d)
     
     return d

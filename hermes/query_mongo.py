@@ -11,15 +11,21 @@ import pprint
 
 argsdict = {}
 
+collection = 'DFT'
 for farg in sys.argv:
     if farg.startswith('--'):
         (arg,val) = farg.split("=")
         arg = arg[2:]
-
-        if arg in argsdict:
-            argsdict[arg].append(val)
+        
+        if arg == 'collection':
+            collection = val
+        
         else:
-            argsdict[arg] = [val] 
+
+            if arg in argsdict:
+                argsdict[arg].append(val)
+            else:
+                argsdict[arg] = [val] 
 
 
 for key in argsdict:
@@ -31,7 +37,7 @@ query = argsdict
 print query
 
 
-result = Mongo_query(query = query)
+result = Mongo_query(query = query,collection=collection)
 pp = pprint.PrettyPrinter()
 
 if len(result) <= 1:
