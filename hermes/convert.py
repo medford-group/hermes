@@ -12,7 +12,7 @@ from ase.constraints import dict2constraint
 ## Functions for creating data objects from ASE atoms objects
 def atoms_to_dict(atoms):
     d=OrderedDict(atoms=[{'symbol':atom.symbol,
-                          'position':atom.position,
+                          'position':atom.position.tolist(),
                           'tag':atom.tag,
                           'index':atom.index,
                           'charge':atom.charge,
